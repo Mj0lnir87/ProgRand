@@ -1,0 +1,21 @@
+struct Note{
+    let A = "A"
+    let ASharp = "A#"
+    let Bb = "Bb"
+    let B = "B"
+    let C = "C"
+    let CSharp = "C#"
+    let Db = "Db"
+    let D = "D"
+    let DSharp = "D#"
+    let Eb = "Eb"
+    let E = "E"
+    let F = "F"
+    let FSharp = "F#"
+    let Gb = "Gb"
+    let G = "G"
+    let GSharp = "G#"
+    let Ab = "Ab"
+    
+    let Cb = "Cb"
+}
