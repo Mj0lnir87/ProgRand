@@ -7,6 +7,8 @@ class ProgressionViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var noteField: UICollectionView!
     
     var style: Style!
+    
+    // temporary chords, not final!
     var chords: [String] = ["A", "Bbm", "Cb", "F#M", "A", "Bbm", "Cb", "F#M", "A", "Bbm", "Cb", "F#M", "A", "Bbm", "Cb", "F#M", "A", "Bbm", "Cb", "F#M"]
     
     override func viewDidLoad() {
