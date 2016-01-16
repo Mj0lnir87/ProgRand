@@ -13,7 +13,7 @@ class StyleSelectViewController: UITableViewController{
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("styleCell", forIndexPath: indexPath) as! StyleCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("styleCell", forIndexPath: indexPath) as! StyleCellTableViewCell
         let style = model.styles[indexPath.row]
         cell.styleName.text = "\(style)"
         return cell

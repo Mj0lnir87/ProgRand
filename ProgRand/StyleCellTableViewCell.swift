@@ -1,5 +1,6 @@
 import UIKit
 
-class StyleCell: UITableViewCell{
+class StyleCellTableViewCell: UITableViewCell{
     @IBOutlet weak var styleName: UILabel!
 }
+

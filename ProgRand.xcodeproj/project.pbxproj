@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F70D6FA11C49446B004ED5E6 /* MajorMinor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70D6FA01C49446B004ED5E6 /* MajorMinor.swift */; };
 		F70D6FA31C498E24004ED5E6 /* ProgressionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70D6FA21C498E24004ED5E6 /* ProgressionViewController.swift */; };
+		F70D6FA61C4A7975004ED5E6 /* StyleCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70D6FA51C4A7975004ED5E6 /* StyleCellCollectionView.swift */; };
 		F7AF2BA51C427F9900DA7EFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BA41C427F9900DA7EFC /* AppDelegate.swift */; };
 		F7AF2BA81C427F9900DA7EFC /* ProgRand.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BA61C427F9900DA7EFC /* ProgRand.xcdatamodeld */; };
 		F7AF2BAF1C427F9900DA7EFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7AF2BAD1C427F9900DA7EFC /* Main.storyboard */; };
@@ -19,7 +20,7 @@
 		F7AF2BE11C4286BA00DA7EFC /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BE01C4286BA00DA7EFC /* Style.swift */; };
 		F7AF2BE71C4287D100DA7EFC /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BE61C4287D100DA7EFC /* Note.swift */; };
 		F7AF2BE91C42908000DA7EFC /* StyleSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BE81C42908000DA7EFC /* StyleSelectViewController.swift */; };
-		F7AF2BEB1C42C01200DA7EFC /* StyleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BEA1C42C01200DA7EFC /* StyleCell.swift */; };
+		F7AF2BEB1C42C01200DA7EFC /* StyleCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BEA1C42C01200DA7EFC /* StyleCellTableViewCell.swift */; };
 		F7AF2BED1C42C1E800DA7EFC /* StyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BEC1C42C1E800DA7EFC /* StyleModel.swift */; };
 		F7AF2BEF1C42C86E00DA7EFC /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BEE1C42C86D00DA7EFC /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		F70D6FA01C49446B004ED5E6 /* MajorMinor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorMinor.swift; sourceTree = "<group>"; };
 		F70D6FA21C498E24004ED5E6 /* ProgressionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressionViewController.swift; sourceTree = "<group>"; };
+		F70D6FA51C4A7975004ED5E6 /* StyleCellCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleCellCollectionView.swift; sourceTree = "<group>"; };
 		F7AF2BA11C427F9900DA7EFC /* ProgRand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgRand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7AF2BA41C427F9900DA7EFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7AF2BA71C427F9900DA7EFC /* ProgRand.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProgRand.xcdatamodel; sourceTree = "<group>"; };
@@ -60,7 +62,7 @@
 		F7AF2BE01C4286BA00DA7EFC /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		F7AF2BE61C4287D100DA7EFC /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		F7AF2BE81C42908000DA7EFC /* StyleSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleSelectViewController.swift; sourceTree = "<group>"; };
-		F7AF2BEA1C42C01200DA7EFC /* StyleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleCell.swift; sourceTree = "<group>"; };
+		F7AF2BEA1C42C01200DA7EFC /* StyleCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleCellTableViewCell.swift; sourceTree = "<group>"; };
 		F7AF2BEC1C42C1E800DA7EFC /* StyleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleModel.swift; sourceTree = "<group>"; };
 		F7AF2BEE1C42C86D00DA7EFC /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +92,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F70D6FA41C4A6A93004ED5E6 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				F7AF2BE01C4286BA00DA7EFC /* Style.swift */,
+				F7AF2BE61C4287D100DA7EFC /* Note.swift */,
+				F70D6FA01C49446B004ED5E6 /* MajorMinor.swift */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
 		F7AF2B981C427F9900DA7EFC = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +125,7 @@
 		F7AF2BA31C427F9900DA7EFC /* ProgRand */ = {
 			isa = PBXGroup;
 			children = (
+				F70D6FA41C4A6A93004ED5E6 /* Domain */,
 				F7AF2BD91C427FFC00DA7EFC /* Models */,
 				F7AF2BD81C427FF500DA7EFC /* Views */,
 				F7AF2BD71C427FE600DA7EFC /* Controllers */,
@@ -157,7 +170,8 @@
 		F7AF2BD81C427FF500DA7EFC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F7AF2BEA1C42C01200DA7EFC /* StyleCell.swift */,
+				F7AF2BEA1C42C01200DA7EFC /* StyleCellTableViewCell.swift */,
+				F70D6FA51C4A7975004ED5E6 /* StyleCellCollectionView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -165,10 +179,7 @@
 		F7AF2BD91C427FFC00DA7EFC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F7AF2BE01C4286BA00DA7EFC /* Style.swift */,
-				F7AF2BE61C4287D100DA7EFC /* Note.swift */,
 				F7AF2BEC1C42C1E800DA7EFC /* StyleModel.swift */,
-				F70D6FA01C49446B004ED5E6 /* MajorMinor.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -308,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7AF2BE91C42908000DA7EFC /* StyleSelectViewController.swift in Sources */,
+				F70D6FA61C4A7975004ED5E6 /* StyleCellCollectionView.swift in Sources */,
 				F70D6FA11C49446B004ED5E6 /* MajorMinor.swift in Sources */,
 				F7AF2BA81C427F9900DA7EFC /* ProgRand.xcdatamodeld in Sources */,
 				F7AF2BEF1C42C86E00DA7EFC /* DetailsViewController.swift in Sources */,
@@ -316,7 +328,7 @@
 				F7AF2BE71C4287D100DA7EFC /* Note.swift in Sources */,
 				F7AF2BED1C42C1E800DA7EFC /* StyleModel.swift in Sources */,
 				F7AF2BA51C427F9900DA7EFC /* AppDelegate.swift in Sources */,
-				F7AF2BEB1C42C01200DA7EFC /* StyleCell.swift in Sources */,
+				F7AF2BEB1C42C01200DA7EFC /* StyleCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
