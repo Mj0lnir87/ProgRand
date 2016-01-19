@@ -8,6 +8,11 @@ class ProgressionViewController: UIViewController, UICollectionViewDataSource, U
     
     var style: Style!
     
+    var majorSharps: [String] = []
+    var majorFlats: [String] = []
+    var minorSharps: [String] = []
+    var minorFlats: [String] = []
+    
     // temporary chords, not final!
     var chords: [String] = ["A", "Bbm", "Cb", "F#M", "A", "Bbm", "Cb", "F#M", "A", "Bbm", "Cb", "F#M", "A", "Bbm", "Cb", "F#M", "A", "Bbm", "Cb", "F#M"]
     
@@ -17,13 +22,17 @@ class ProgressionViewController: UIViewController, UICollectionViewDataSource, U
         
         styleBarsLabel.text = Int(style.styleBars).description
         
-        if style.majorKey == false{
-            keyLabel.text = style.keyNote + "m"
-        } else {
+        devideMajorMinorKeyArray(style)
+        
+        if style.majorKey{
             keyLabel.text = style.keyNote
+            defineMajorScale(style)
+        } else {
+            keyLabel.text = style.keyNote + "m"
+            defineMinorScale(style)
         }
         
-        something(style)
+        
         
         print("\(style.styleName)" + " \(style.styleBars)" + " \(style.keyNote)" + " Major: \(style.majorKey)")
         
@@ -48,18 +57,10 @@ class ProgressionViewController: UIViewController, UICollectionViewDataSource, U
         return cell
     }
     
-    func something(style: Style){
-        var majorSharps: [String] = []
-        var majorFlats: [String] = []
-        var minorSharps: [String] = []
-        var minorFlats: [String] = []
+    // devide MajorMinor arrays in 2 and plase first half in new array to see if it is a part of the sharps of the flats
+    func devideMajorMinorKeyArray(style: Style){
         
-        var majorScale: [String] = []
-        
-        // devide MajorMinor arrays in 2 and plase first half in new array to see if it is a part of the sharps of the flats
         let majorMinorCount = MajorMinor().major.count //Major and Minor contain an equal amount of notes, ALWAYS!
-        
-        let rootNoteIndex = MajorMinor().sharps.indexOf(style.keyNote)
         
         for var i = 0; i < majorMinorCount; ++i{
             if i < majorMinorCount/2{
@@ -75,18 +76,502 @@ class ProgressionViewController: UIViewController, UICollectionViewDataSource, U
         print("Major b's: " + majorFlats.description)
         print("Minor #'s: " + minorSharps.description)
         print("Minor b's: " + minorFlats.description)
+    }
+    
+    //defining the major scales
+    func defineMajorScale(style: Style){
+        var majorScale: [String] = []
+        majorScale.append(style.keyNote)
         
+        var currentNote = style.keyNote
         
-        //defining the major scales
-        if majorSharps.contains(style.keyNote){
-            majorScale.append(style.keyNote)
-            if (MajorMinor().sharps.indexOutOfRange(rootNoteIndex! + 2)) == nil{
-                majorScale.append(MajorMinor().sharps[2])
+            if majorSharps.contains(style.keyNote){
+                
+                var noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                
+                if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[0] + "m")
+                    currentNote = MajorMinor().sharps[0]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                    
+                } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[1] + "m" )
+                    currentNote = MajorMinor().sharps[1]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                } else {
+                    
+                    majorScale.append(MajorMinor().sharps[noteIndex! + 2] + "m")
+                    currentNote = MajorMinor().sharps[noteIndex! + 2]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[0] + "m")
+                    currentNote = MajorMinor().sharps[0]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                    
+                } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[1] + "m")
+                    currentNote = MajorMinor().sharps[1]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                } else {
+                    
+                    majorScale.append(MajorMinor().sharps[noteIndex! + 2] + "m")
+                    currentNote = MajorMinor().sharps[noteIndex! + 2]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[0])
+                    currentNote = MajorMinor().sharps[0]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                    
+                } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[0])
+                    currentNote = MajorMinor().sharps[0]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                } else {
+                
+                    majorScale.append(MajorMinor().sharps[noteIndex! + 1])
+                    currentNote = MajorMinor().sharps[noteIndex! + 1]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[0])
+                    currentNote = MajorMinor().sharps[0]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                    
+                } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[1])
+                    currentNote = MajorMinor().sharps[1]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                } else {
+                
+                    majorScale.append(MajorMinor().sharps[noteIndex! + 2])
+                    currentNote = MajorMinor().sharps[noteIndex! + 2]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[0] + "m")
+                    currentNote = MajorMinor().sharps[0]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                    
+                } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[1] + "m")
+                    currentNote = MajorMinor().sharps[1]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                } else {
+                
+                    majorScale.append(MajorMinor().sharps[noteIndex! + 2] + "m")
+                    currentNote = MajorMinor().sharps[noteIndex! + 2]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[0] + "m")
+                    currentNote = MajorMinor().sharps[0]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                    
+                } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().sharps[1] + "m")
+                    currentNote = MajorMinor().sharps[1]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                } else {
+                
+                    majorScale.append(MajorMinor().sharps[noteIndex! + 2] + "m")
+                    currentNote = MajorMinor().sharps[noteIndex! + 2]
+                    noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                }
+            } else {
+                
+                if currentNote == "Cb" {
+                    currentNote = "B"
+                }
+                
+                var noteIndex = MajorMinor().flats.indexOf(currentNote)
+                
+                if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[0] + "m")
+                    currentNote = MajorMinor().flats[0]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                    
+                } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[1] + "m")
+                    currentNote = MajorMinor().flats[1]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                } else {
+                    
+                    majorScale.append(MajorMinor().flats[noteIndex! + 2] + "m")
+                    currentNote = MajorMinor().flats[noteIndex! + 2]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[0] + "m")
+                    currentNote = MajorMinor().flats[0]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                    
+                } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[1] + "m")
+                    currentNote = MajorMinor().flats[1]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                } else {
+                    
+                    majorScale.append(MajorMinor().flats[noteIndex! + 2] + "m")
+                    currentNote = MajorMinor().flats[noteIndex! + 2]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[0])
+                    currentNote = MajorMinor().flats[0]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                    
+                } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[0])
+                    currentNote = MajorMinor().flats[0]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                } else {
+                    
+                    majorScale.append(MajorMinor().flats[noteIndex! + 1])
+                    currentNote = MajorMinor().flats[noteIndex! + 1]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[0])
+                    currentNote = MajorMinor().flats[0]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                    
+                } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[1])
+                    currentNote = MajorMinor().flats[1]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                } else {
+                    
+                    majorScale.append(MajorMinor().flats[noteIndex! + 2])
+                    currentNote = MajorMinor().flats[noteIndex! + 2]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[0] + "m")
+                    currentNote = MajorMinor().flats[0]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                    
+                } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[1] + "m")
+                    currentNote = MajorMinor().flats[1]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                } else {
+                    
+                    majorScale.append(MajorMinor().flats[noteIndex! + 2] + "m")
+                    currentNote = MajorMinor().flats[noteIndex! + 2]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                }
+                
+                
+                if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[0] + "m")
+                    currentNote = MajorMinor().flats[0]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                    
+                } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                    
+                    majorScale.append(MajorMinor().flats[1] + "m")
+                    currentNote = MajorMinor().flats[1]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                } else {
+                    
+                    majorScale.append(MajorMinor().flats[noteIndex! + 2] + "m")
+                    currentNote = MajorMinor().flats[noteIndex! + 2]
+                    noteIndex = MajorMinor().flats.indexOf(currentNote)
+                }
             }
-            
-        }
         
         print("Major Scale " + majorScale.description)
+    }
+    
+    //defining the minor scales
+    func defineMinorScale(style: Style){
+        var minorScale: [String] = []
+        minorScale.append(style.keyNote + "m")
+        
+        var currentNote = style.keyNote
+        
+        if minorSharps.contains(style.keyNote){
+            
+            var noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            
+            if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[0] + "m")
+                currentNote = MajorMinor().sharps[0]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                
+            } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[1] + "m" )
+                currentNote = MajorMinor().sharps[1]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().sharps[noteIndex! + 2] + "m")
+                currentNote = MajorMinor().sharps[noteIndex! + 2]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[noteIndex! + 1])
+                currentNote = MajorMinor().sharps[noteIndex! + 1]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                
+            } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[0])
+                currentNote = MajorMinor().sharps[0]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().sharps[noteIndex! + 1])
+                currentNote = MajorMinor().sharps[noteIndex! + 1]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[0] + "m")
+                currentNote = MajorMinor().sharps[0]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                
+            } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[1] + "m")
+                currentNote = MajorMinor().sharps[1]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().sharps[noteIndex! + 2] + "m")
+                currentNote = MajorMinor().sharps[noteIndex! + 2]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[0] + "m")
+                currentNote = MajorMinor().sharps[0]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                
+            } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[1] + "m")
+                currentNote = MajorMinor().sharps[1]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().sharps[noteIndex! + 2] + "m")
+                currentNote = MajorMinor().sharps[noteIndex! + 2]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[noteIndex! + 1])
+                currentNote = MajorMinor().sharps[noteIndex! + 1]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                
+            } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[0])
+                currentNote = MajorMinor().sharps[0]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().sharps[noteIndex! + 1])
+                currentNote = MajorMinor().sharps[noteIndex! + 1]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().sharps.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[0] + "m")
+                currentNote = MajorMinor().sharps[0]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+                
+            } else if (MajorMinor().sharps.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().sharps[1] + "m")
+                currentNote = MajorMinor().sharps[1]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().sharps[noteIndex! + 2] + "m")
+                currentNote = MajorMinor().sharps[noteIndex! + 2]
+                noteIndex = MajorMinor().sharps.indexOf(currentNote)
+            }
+        } else {
+            
+            if currentNote == "Cb" {
+                currentNote = "B"
+            }
+            
+            var noteIndex = MajorMinor().flats.indexOf(currentNote)
+            
+            if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().flats[0] + "m")
+                currentNote = MajorMinor().flats[0]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+                
+            } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().flats[1] + "m")
+                currentNote = MajorMinor().flats[1]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().flats[noteIndex! + 2] + "m")
+                currentNote = MajorMinor().flats[noteIndex! + 2]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().flats[noteIndex! + 1])
+                currentNote = MajorMinor().flats[noteIndex! + 1]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+                
+            } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().flats[0])
+                currentNote = MajorMinor().flats[0]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().flats[noteIndex! + 1])
+                currentNote = MajorMinor().flats[noteIndex! + 1]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().flats[0] + "m")
+                currentNote = MajorMinor().flats[0]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+                
+            } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().flats[1] + "m")
+                currentNote = MajorMinor().flats[1]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().flats[noteIndex! + 2] + "m")
+                currentNote = MajorMinor().flats[noteIndex! + 2]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().flats[0] + "m")
+                currentNote = MajorMinor().flats[0]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+                
+            } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().flats[1] + "m")
+                currentNote = MajorMinor().flats[1]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().flats[noteIndex! + 2] + "m")
+                currentNote = MajorMinor().flats[noteIndex! + 2]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().flats[noteIndex! + 1])
+                currentNote = MajorMinor().flats[noteIndex! + 1]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+                
+            } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().flats[0])
+                currentNote = MajorMinor().flats[0]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().flats[noteIndex! + 1])
+                currentNote = MajorMinor().flats[noteIndex! + 1]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            }
+            
+            
+            if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) != nil && (MajorMinor().flats.indexOutOfRange(noteIndex! + 2)) == nil {
+                
+                minorScale.append(MajorMinor().flats[0] + "m")
+                currentNote = MajorMinor().flats[0]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+                
+            } else if (MajorMinor().flats.indexOutOfRange(noteIndex! + 1)) == nil {
+                
+                minorScale.append(MajorMinor().flats[1] + "m")
+                currentNote = MajorMinor().flats[1]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            } else {
+                
+                minorScale.append(MajorMinor().flats[noteIndex! + 2] + "m")
+                currentNote = MajorMinor().flats[noteIndex! + 2]
+                noteIndex = MajorMinor().flats.indexOf(currentNote)
+            }
+        }
+        
+        print("Minor Scale " + minorScale.description)
     }
 
 }
