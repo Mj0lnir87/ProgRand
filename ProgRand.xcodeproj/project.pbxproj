@@ -10,6 +10,8 @@
 		F70D6FA11C49446B004ED5E6 /* MajorMinor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70D6FA01C49446B004ED5E6 /* MajorMinor.swift */; };
 		F70D6FA31C498E24004ED5E6 /* ProgressionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70D6FA21C498E24004ED5E6 /* ProgressionViewController.swift */; };
 		F70D6FA61C4A7975004ED5E6 /* StyleCellCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70D6FA51C4A7975004ED5E6 /* StyleCellCollectionView.swift */; };
+		F74FE45C1C4ECA66002E7752 /* SavedProgressionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74FE45B1C4ECA65002E7752 /* SavedProgressionsViewController.swift */; };
+		F74FE45E1C4ECE3A002E7752 /* SavedProgressionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74FE45D1C4ECE3A002E7752 /* SavedProgressionViewController.swift */; };
 		F7AF2BA51C427F9900DA7EFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BA41C427F9900DA7EFC /* AppDelegate.swift */; };
 		F7AF2BA81C427F9900DA7EFC /* ProgRand.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7AF2BA61C427F9900DA7EFC /* ProgRand.xcdatamodeld */; };
 		F7AF2BAF1C427F9900DA7EFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7AF2BAD1C427F9900DA7EFC /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		F70D6FA01C49446B004ED5E6 /* MajorMinor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorMinor.swift; sourceTree = "<group>"; };
 		F70D6FA21C498E24004ED5E6 /* ProgressionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressionViewController.swift; sourceTree = "<group>"; };
 		F70D6FA51C4A7975004ED5E6 /* StyleCellCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleCellCollectionView.swift; sourceTree = "<group>"; };
+		F74FE45B1C4ECA65002E7752 /* SavedProgressionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedProgressionsViewController.swift; sourceTree = "<group>"; };
+		F74FE45D1C4ECE3A002E7752 /* SavedProgressionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedProgressionViewController.swift; sourceTree = "<group>"; };
 		F7AF2BA11C427F9900DA7EFC /* ProgRand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgRand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7AF2BA41C427F9900DA7EFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7AF2BA71C427F9900DA7EFC /* ProgRand.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProgRand.xcdatamodel; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				F7AF2BE81C42908000DA7EFC /* StyleSelectViewController.swift */,
 				F7AF2BEE1C42C86D00DA7EFC /* DetailsViewController.swift */,
 				F70D6FA21C498E24004ED5E6 /* ProgressionViewController.swift */,
+				F74FE45B1C4ECA65002E7752 /* SavedProgressionsViewController.swift */,
+				F74FE45D1C4ECE3A002E7752 /* SavedProgressionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F74FE45C1C4ECA66002E7752 /* SavedProgressionsViewController.swift in Sources */,
 				F7AF2BE91C42908000DA7EFC /* StyleSelectViewController.swift in Sources */,
 				F70D6FA61C4A7975004ED5E6 /* StyleCellCollectionView.swift in Sources */,
 				F70D6FA11C49446B004ED5E6 /* MajorMinor.swift in Sources */,
@@ -325,6 +332,7 @@
 				F7AF2BEF1C42C86E00DA7EFC /* DetailsViewController.swift in Sources */,
 				F70D6FA31C498E24004ED5E6 /* ProgressionViewController.swift in Sources */,
 				F7AF2BE11C4286BA00DA7EFC /* Style.swift in Sources */,
+				F74FE45E1C4ECE3A002E7752 /* SavedProgressionViewController.swift in Sources */,
 				F7AF2BE71C4287D100DA7EFC /* Note.swift in Sources */,
 				F7AF2BED1C42C1E800DA7EFC /* StyleModel.swift in Sources */,
 				F7AF2BA51C427F9900DA7EFC /* AppDelegate.swift in Sources */,

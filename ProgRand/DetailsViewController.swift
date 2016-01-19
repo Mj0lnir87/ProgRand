@@ -93,7 +93,7 @@ class DetailsViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let progressionController = (segue.destinationViewController as! UINavigationController).topViewController as! ProgressionViewController
         let styleBarsStepperValue = Int(styleBarsStepper.value)
-        let style = Style(styleName: styleName, styleBars: styleBarsStepperValue, majorKey: majorKey, keyNote: selectedKeyNoteValue)
+        let style = Style(styleName: styleName, styleBars: styleBarsStepperValue, majorKey: majorKey, keyNote: selectedKeyNoteValue, chordProgression: [])
         progressionController.style = style
         
     }
