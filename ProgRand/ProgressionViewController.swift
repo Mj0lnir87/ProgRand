@@ -49,40 +49,51 @@ class ProgressionViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func something(style: Style){
-        var majorFirstPart: [String] = []
-        var majorLastPart: [String] = []
-        var minorFirstPart: [String] = []
-        var minorLastPart: [String] = []
+        var majorSharps: [String] = []
+        var majorFlats: [String] = []
+        var minorSharps: [String] = []
+        var minorFlats: [String] = []
+        
+        var majorScale: [String] = []
         
         // devide MajorMinor arrays in 2 and plase first half in new array to see if it is a part of the sharps of the flats
-        let majorCount = MajorMinor().major.count
-        for var i = 0; i < majorCount; ++i{
-            if i < majorCount/2{
-                majorFirstPart.append(MajorMinor().major[i])
+        let majorMinorCount = MajorMinor().major.count //Major and Minor contain an equal amount of notes, ALWAYS!
+        
+        let rootNoteIndex = MajorMinor().sharps.indexOf(style.keyNote)
+        
+        for var i = 0; i < majorMinorCount; ++i{
+            if i < majorMinorCount/2{
+                majorSharps.append(MajorMinor().major[i])
+                minorSharps.append(MajorMinor().minor[i])
             } else {
-                majorLastPart.append(MajorMinor().major[i])
+                majorFlats.append(MajorMinor().major[i])
+                minorFlats.append(MajorMinor().minor[i])
             }
         }
         
-        let minorCount = MajorMinor().minor.count
-        for var i = 0; i < minorCount; ++i{
-            if i < minorCount/2{
-                minorFirstPart.append(MajorMinor().minor[i])
-            } else {
-                minorLastPart.append(MajorMinor().minor[i])
+        print("Major #'s: " + majorSharps.description)
+        print("Major b's: " + majorFlats.description)
+        print("Minor #'s: " + minorSharps.description)
+        print("Minor b's: " + minorFlats.description)
+        
+        
+        //defining the major scales
+        if majorSharps.contains(style.keyNote){
+            majorScale.append(style.keyNote)
+            if (MajorMinor().sharps.indexOutOfRange(rootNoteIndex! + 2)) == nil{
+                majorScale.append(MajorMinor().sharps[2])
             }
+            
         }
         
-        print("Major First: " + majorFirstPart.description)
-        print("Major Last: " + majorLastPart.description)
-        print("Minor First: " + minorFirstPart.description)
-        print("Minor Last: " + minorLastPart.description)
-        
-        // define the scales!
-        var majorScale: [String] = []
-        if style.majorKey == true && majorFirstPart.contains(style.keyNote){
-            majorScale = [] // Continue here!
-        }
+        print("Major Scale " + majorScale.description)
     }
-    
+
+}
+
+//To restart the MajorMinor().sharps or MajorMinor().flats array when 'Array index out of range' error is thrown!
+extension Array{
+    func indexOutOfRange(index:Int) -> Element? {
+        return index < count && index >= 0 ? self[index] : nil
+    }
 }
