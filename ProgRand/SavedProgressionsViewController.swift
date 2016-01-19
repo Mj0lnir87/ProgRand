@@ -1,8 +1,10 @@
 import UIKit
 
-class SavedProgressonsViewController: UITableViewController{
+class SavedProgressonsViewController: UITableViewController, UISplitViewControllerDelegate
+{
     
     var savedProgressions: [Style] = []
+    
     func loadProgressions(){
         let savedProgressionsData = NSUserDefaults.standardUserDefaults().objectForKey("progressions") as? NSData
         
@@ -16,6 +18,14 @@ class SavedProgressonsViewController: UITableViewController{
         
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        navigationItem.leftItemsSupplementBackButton = true
+    }
+    
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -27,8 +37,12 @@ class SavedProgressonsViewController: UITableViewController{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("styleCell", forIndexPath: indexPath) as! StyleCellTableViewCell
         let style = savedProgressions[indexPath.row].styleName
-        cell.styleName.text = "\(style)"
+        cell.styleNameNew.text = "\(style)"
         return cell
+    }
+    
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool{
+        return true
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -37,6 +51,10 @@ class SavedProgressonsViewController: UITableViewController{
         let selectedRow = tableView.indexPathForSelectedRow!.row
         let style = savedProgressions[selectedRow]
         savedProgressionController.style = style
+    }
+    
+    @IBAction func cancel(){
+        performSegueWithIdentifier("cancel", sender: self)
     }
     
 }

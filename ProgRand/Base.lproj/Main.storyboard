@@ -91,7 +91,7 @@
             </objects>
             <point key="canvasLocation" x="-743" y="115"/>
         </scene>
-        <!--Title-->
+        <!--Saved Progresions!-->
         <scene sceneID="fQ0-J8-0Ah">
             <objects>
                 <tableViewController id="mP2-x7-yLB" customClass="SavedProgressonsViewController" customModule="ProgRand" customModuleProvider="target" sceneMemberID="viewController">
@@ -99,16 +99,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="styleCell" id="IGf-Ze-RHh" customClass="StyleCellTableViewCell" customModule="ProgRand" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IGf-Ze-RHh" id="0p8-xa-RPs">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaZ-Zo-MJ2">
+                                            <rect key="frame" x="279" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="styleNameNew" destination="MaZ-Zo-MJ2" id="woS-Hs-Yt9"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="mP2-x7-yLB" id="kvW-EX-2DF"/>
                             <outlet property="delegate" destination="mP2-x7-yLB" id="EM6-5Z-sLS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="0sm-QI-R6g">
-                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="lH5-4d-yJb"/>
+                    <navigationItem key="navigationItem" title="Saved Progresions!" id="0sm-QI-R6g">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="MZa-6S-uTJ">
+                            <connections>
+                                <segue destination="uES-ad-tXB" kind="unwind" unwindAction="unwindSavedList:" id="pTg-mQ-gEt"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="882-wb-Thl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="uES-ad-tXB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="95" y="905"/>
         </scene>

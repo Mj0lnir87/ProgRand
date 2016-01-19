@@ -24,6 +24,10 @@ class StyleSelectViewController: UITableViewController{
         let selectedRow = tableView.indexPathForSelectedRow!.row
         let selectedStyle = model.styles[selectedRow]
         detailsController.styleName = selectedStyle
-    }    
+    }
+    
+    @IBAction func unwindSavedList(segue: UIStoryboardSegue) {
+        self.reloadInputViews()
+    }
     
 }
